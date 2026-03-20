@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Simposio Internacional de Innovación Académica 2026 | Universidad Central</title>
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts: Montserrat + Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Animate.css (opcional para efectos suaves) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .navbar-brand, .btn {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navbar personalizada */
+        .navbar {
+            background-color: rgba(10, 35, 66, 0.95);
+            backdrop-filter: blur(6px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            color: #ffffff !important;
+        }
+        .navbar-brand span {
+            color: #f7b32b;
+        }
+        .nav-link {
+            color: #f1f5f9 !important;
+            font-weight: 500;
+            margin: 0 6px;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #f7b32b !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a2342 0%, #1e3a5f 100%);
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .hero .badge-date {
+            background-color: #f7b32b;
+            color: #0a2342;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 1rem;
+        }
+        .btn-gold {
+            background-color: #f7b32b;
+            color: #0a2342;
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 40px;
+            transition: 0.3s;
+            border: none;
+        }
+        .btn-gold:hover {
+            background-color: #e09d1c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            color: #0a2342;
+        }
+        .btn-outline-light {
+            border-radius: 40px;
+            padding: 12px 28px;
+            font-weight: 600;
+        }
+
+        /* Secciones comunes */
+        .section-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: #f7b32b;
+            border-radius: 4px;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+        .speaker-img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #f7b32b;
+            margin-top: -40px;
+            background-color: white;
+        }
+        .schedule-item {
+            border-left: 4px solid #f7b32b;
+            background: white;
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            margin-bottom: 1rem;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+        .schedule-item:hover {
+            background-color: #fffaf0;
+        }
+        .countdown-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 1rem;
+            text-align: center;
+            min-width: 80px;
+        }
+        .countdown-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        footer {
+            background-color: #0a2342;
+            color: #cbd5e1;
+        }
+        .social-icons a {
+            color: #f1f5f9;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: #f7b32b;
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.3rem; }
+            .section-title { font-size: 1.8rem; }
+            .countdown-number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navegación -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ACADEMIA<span>2026</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre">El Evento</a></li>
+                <li class="nav-item"><a class="nav-link" href="#speakers">Conferencistas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#agenda">Agenda</a></li>
+                <li class="nav-item"><a class="nav-link" href="#registro">Registro</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section (Inicio) -->
+<section id="inicio" class="hero">
+    <div class="container text-white text-center">
+        <div class="mb-4 animate__animated animate__fadeInUp">
+            <span class="badge-date"><i class="bi bi-calendar-week"></i> 15 - 17 Octubre, 2026</span>
+        </div>
+        <h1 class="animate__animated animate__fadeInUp animate__delay-1s">Simposio Internacional de<br>Innovación Académica 2026</h1>
+        <p class="lead mx-auto animate__animated animate__fadeInUp animate__delay-2s" style="max-width: 700px;">Tecnología, sostenibilidad y futuro de la educación superior</p>
+        <div class="mt-4 animate__animated animate__fadeInUp animate__delay-3s">
+            <a href="#registro" class="btn btn-gold me-3"><i class="bi bi-ticket-perforated"></i> Inscribirme ahora</a>
+            <a href="#agenda" class="btn btn-outline-light"><i class="bi bi-calendar3"></i> Ver programa</a>
+        </div>
+        <div class="row mt-5 justify-content-center animate__animated animate__fadeInUp animate__delay-3s">
+            <div class="col-md-8">
+                <div class="d-flex flex-wrap justify-content-center gap-4">
+                    <div><i class="bi bi-geo-alt-fill"></i> Auditorio Principal - Universidad Central</div>
+                    <div><i class="bi bi-translate"></i> 15 países invitados · 40+ ponencias</div>
+                    <div><i class="bi bi-award-fill"></i> Certificación académica</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sobre el evento -->
+<section id="sobre" class="py-5">
+    <div class="container py-4">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <span class="text-uppercase text-warning fw-semibold">Sobre el simposio</span>
+                <h2 class="section-title mt-2">Donde el conocimiento transforma el futuro</h2>
+                <p class="mt-3 fs-5">El Simposio Internacional de Innovación Académica reúne a expertos, investigadores, docentes y estudiantes para explorar las tendencias disruptivas en educación, inteligencia artificial aplicada, modelos híbridos y desarrollo sostenible dentro del ámbito universitario.</p>
+                <p>Organizado por la <strong>Universidad Central</strong> y la <strong>Facultad de Educación y Tecnología</strong>, este evento espera más de 800 asistentes presenciales y transmisión en vivo para toda la comunidad global.</p>
+                <div class="row mt-4">
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex"><i class="bi bi-check-circle-fill text-warning fs-4 me-2"></i> <span>20+ talleres especializados</span></div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex"><i class="bi bi-check-circle-fill text-warning fs-4 me-2"></i> <span>Networking con líderes</span></div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex"><i class="bi bi-check-circle-fill text-warning fs-4 me-2"></i> <span>Publicación de memorias (ISSN)</span></div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="d-flex"><i class="bi bi-check-circle-fill text-warning fs-4 me-2"></i> <span>Espacios de innovación y laboratorios</span></div>
+                    </div>
+                </div>
+                <a href="#registro" class="btn btn-gold mt-2"><i class="bi bi-envelope-paper"></i> Solicitar información</a>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Campus universitario" class="img-fluid rounded-4 shadow-lg" style="object-fit: cover; height: 380px; width: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contador Regresivo (JavaScript) -->
+<section class="bg-light py-5">
+    <div class="container text-center">
+        <h3 class="fw-bold">El evento comienza en</h3>
+        <div class="row justify-content-center mt-4 g-3" id="countdownTimer">
+            <div class="col-6 col-md-3">
+                <div class="countdown-box bg-white shadow-sm">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="text-muted">Días</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="countdown-box bg-white shadow-sm">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="text-muted">Horas</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="countdown-box bg-white shadow-sm">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="text-muted">Minutos</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="countdown-box bg-white shadow-sm">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="text-muted">Segundos</div>
+                </div>
+            </div>
+        </div>
+        <p class="mt-3 text-secondary"><i class="bi bi-pin-map-fill"></i> Auditorio Mayor - Universidad Central (Presencial + Streaming)</p>
+    </div>
+</section>
+
+<!-- Speakers / Conferencistas -->
+<section id="speakers" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-semibold">Ponentes destacados</span>
+            <h2 class="section-title" style="display: inline-block; width: auto;">Voces que inspiran</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="speaker-img mx-auto" alt="Dra. Laura Méndez">
+                    <div class="card-body">
+                        <h5 class="fw-bold mt-2">Dra. Laura Méndez</h5>
+                        <p class="text-warning fw-semibold">MIT Media Lab</p>
+                        <p class="small">“IA generativa en la evaluación académica: nuevos paradigmas”</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="speaker-img mx-auto" alt="Dr. Javier Rojas">
+                    <div class="card-body">
+                        <h5 class="fw-bold mt-2">Dr. Javier Rojas</h5>
+                        <p class="text-warning fw-semibold">Universidad de Barcelona</p>
+                        <p class="small">“Sostenibilidad curricular: hacia universidades carbono neutral”</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" class="speaker-img mx-auto" alt="Dra. Sofía Chen">
+                    <div class="card-body">
+                        <h5 class="fw-bold mt-2">Dra. Sofía Chen</h5>
+                        <p class="text-warning fw-semibold">National University of Singapore</p>
+                        <p class="small">“Transformación digital en la experiencia estudiantil”</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" class="speaker-img mx-auto" alt="Dr. Carlos Herrera">
+                    <div class="card-body">
+                        <h5 class="fw-bold mt-2">Dr. Carlos Herrera</h5>
+                        <p class="text-warning fw-semibold">Tecnológico de Monterrey</p>
+                        <p class="small">“Aprendizaje adaptativo y laboratorios remotos”</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Agenda del evento -->
+<section id="agenda" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-semibold">Programa académico</span>
+            <h2 class="section-title" style="display: inline-block;">Agenda 3 días</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <ul class="nav nav-tabs justify-content-center mb-4" id="agendaTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active fw-semibold" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab">Día 1 · 15 Oct</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab">Día 2 · 16 Oct</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link fw-semibold" id="day3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button" role="tab">Día 3 · 17 Oct</button>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <!-- Día 1 -->
+                    <div class="tab-pane fade show active" id="day1" role="tabpanel">
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">09:00 - 10:30</div>
+                            <div class="flex-grow-1 ms-3"><strong>Ceremonia inaugural</strong><br>Conferencia magistral: Futuro de la educación superior, Rectoría Universidad Central</div>
+                        </div>
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">11:00 - 12:30</div>
+                            <div class="flex-grow-1 ms-3"><strong>Panel: IA en la gestión universitaria</strong><br>Dra. Laura Méndez, Dr. Arturo Peña, moderación: Decano Facultad Ingeniería</div>
+                        </div>
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">14:00 - 16:00</div>
+                            <div class="flex-grow-1 ms-3"><strong>Taller: Diseño de experiencias de aprendizaje híbrido</strong><br>Laboratorio de Innovación - Cupo limitado</div>
+                        </div>
+                    </div>
+                    <!-- Día 2 -->
+                    <div class="tab-pane fade" id="day2" role="tabpanel">
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">09:30 - 11:00</div>
+                            <div class="flex-grow-1 ms-3"><strong>Keynote: Sostenibilidad académica y ciudades inteligentes</strong><br>Dr. Javier Rojas</div>
+                        </div>
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">11:30 - 13:00</div>
+                            <div class="flex-grow-1 ms-3"><strong>Mesa redonda: Internacionalización del currículo</strong><br>Participan universidades de 5 países.</div>
+                        </div>
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">15:00 - 17:00</div>
+                            <div class="flex-grow-1 ms-3"><strong>Presentación de posters científicos y networking</strong><br>Espacio de innovación abierta.</div>
+                        </div>
+                    </div>
+                    <!-- Día 3 -->
+                    <div class="tab-pane fade" id="day3" role="tabpanel">
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">10:00 - 11:30</div>
+                            <div class="flex-grow-1 ms-3"><strong>Workshop: Ética y datos en entornos educativos</strong><br>Dra. Sofía Chen</div>
+                        </div>
+                        <div class="schedule-item d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="fw-bold" style="min-width: 100px;">12:00 - 13:30</div>
+                            <div class="flex-grow-1 ms-3"><strong>Clausura: Entrega de reconocimientos y anuncio Simposio 2027</strong><br>Presentación cultural universitaria</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Registro / Formulario con JavaScript interactivo -->
+<section id="registro" class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <h2 class="section-title">Registro gratuito</h2>
+                <p class="lead">Asegura tu participación presencial o virtual. Todos los inscritos recibirán constancia de asistencia y acceso a las grabaciones.</p>
+                <div class="mt-4 p-4 bg-white rounded-4 shadow-sm">
+                    <i class="bi bi-person-check fs-1 text-warning"></i>
+                    <p class="mt-2"><strong>+300 plazas presenciales</strong><br>Transmisión en vivo con interacción.</p>
+                    <hr>
+                    <i class="bi bi-currency-dollar"></i> <strong>Gratuito</strong> para comunidad universitaria y público general con registro previo.
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-lg rounded-4 p-4">
+                    <h4 class="mb-3 fw-bold">Formulario de inscripción</h4>
+                    <form id="registerForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Nombres</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="María José" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Apellidos</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="González" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Correo institucional / personal</label>
+                            <input type="email" class="form-control" id="email" placeholder="ejemplo@universidad.edu" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Institución / Organización</label>
+                            <input type="text" class="form-control" id="institution" placeholder="Universidad Central / Otra" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Modalidad de asistencia</label>
+                            <select class="form-select" id="modalidad">
+                                <option value="Presencial">Presencial (Auditorio Principal)</option>
+                                <option value="Virtual">Virtual (Streaming + Interacción)</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="newsletter">
+                            <label class="form-check-label">Deseo recibir información sobre futuros eventos académicos</label>
+                        </div>
+                        <button type="submit" class="btn btn-gold w-100 py-2"><i class="bi bi-send-check"></i> Inscribirme al simposio</button>
+                        <div id="formMessage" class="mt-3 text-center small"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h4 class="text-white">ACADEMIA<span class="text-warning">2026</span></h4>
+                <p class="mt-3">Impulsando el conocimiento con propósito. Evento organizado por la Vicerrectoría Académica y la Dirección de Innovación Educativa.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5 class="text-warning">Enlaces</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#inicio" class="text-decoration-none text-white-50">Inicio</a></li>
+                    <li><a href="#sobre" class="text-decoration-none text-white-50">El evento</a></li>
+                    <li><a href="#speakers" class="text-decoration-none text-white-50">Conferencistas</a></li>
+                    <li><a href="#agenda" class="text-decoration-none text-white-50">Agenda</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-warning">Contacto</h5>
+                <address class="text-white-50">
+                    <i class="bi bi-building"></i> Universidad Central, Torre de Posgrados<br>
+                    <i class="bi bi-envelope"></i> simposio@universidadcentral.edu<br>
+                    <i class="bi bi-telephone"></i> +57 (601) 456 7890
+                </address>
+            </div>
+        </div>
+        <hr class="mt-4 opacity-25">
+        <div class="text-center text-white-50 small">
+            © 2026 Simposio Internacional de Innovación Académica - Todos los derechos reservados.
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS + Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript: Contador + Formulario interactivo -->
+<script>
+    // ---------- COUNTDOWN TIMER (Fecha objetivo: 15 de octubre 2026, 00:00:00) ----------
+    function updateCountdown() {
+        const targetDate = new Date("October 15, 2026 00:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance < 0) {
+            document.getElementById("days").innerHTML = "00";
+            document.getElementById("hours").innerHTML = "00";
+            document.getElementById("minutes").innerHTML = "00";
+            document.getElementById("seconds").innerHTML = "00";
+            return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // ---------- FORMULARIO CON VALIDACIÓN SIMPLE Y MENSAJE DINÁMICO ----------
+    const registerForm = document.getElementById("registerForm");
+    const formMessage = document.getElementById("formMessage");
+
+    registerForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const institution = document.getElementById("institution").value.trim();
+        const modalidad = document.getElementById("modalidad").value;
+
+        if (!firstName || !lastName || !email || !institution) {
+            formMessage.innerHTML = '<span class="text-danger"><i class="bi bi-exclamation-triangle"></i> Por favor completa todos los campos obligatorios.</span>';
+            return;
+        }
+        if (!email.includes("@") || !email.includes(".")) {
+            formMessage.innerHTML = '<span class="text-danger"><i class="bi bi-envelope-x"></i> Ingresa un correo válido.</span>';
+            return;
+        }
+
+        // Simular envío exitoso
+        formMessage.innerHTML = `<span class="text-success"><i class="bi bi-check-circle-fill"></i> ¡Gracias ${firstName}! Tu inscripción al Simposio ha sido registrada con éxito (${modalidad}). Recibirás un correo de confirmación.</span>`;
+        registerForm.reset();
+        setTimeout(() => {
+            formMessage.innerHTML = "";
+        }, 6000);
+    });
+</script>
+</body>
+</html>
